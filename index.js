@@ -5,12 +5,15 @@ const indexofrouter = require("./routes");
 app.use("/", indexofrouter);
 mongoose
   .connect("mongodb://localhost:27017/blog-app")
-  .then(() => console.log("Connected!"));
-app.use((req, res, next, err) => {
-  err = err ? err.toString() : "something is missing";
+  .then(() => console.log("Connected!"))
+  .catch((err) => console.error("Error connecting to MongoDB:", err));
+
+app.use(express.json());
+app.use((err, req, res, next) => {
+  err = err ? err.toString() : "Something is missing";
   res.status(500).json({ msg: err });
 });
-app.use(express.json());
+
 app.listen(8000, () => {
-  console.log("app is runing");
+  console.log("App is running on port 8000");
 });
