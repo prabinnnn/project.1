@@ -23,7 +23,7 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    const id = req.params.id; // Corrected parameter extraction
+    const id = req.params;
     const body = req.body;
     console.log({ id, body });
     const result = await blogcontroller.getById(id, body);
