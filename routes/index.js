@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const blogrouter = require("../module/blog/blog.route");
 const userrouter = require("../module/blog/user/user.route");
+const eventrouter = require("../module/blog/event-app/event.route");
 
 router.get("/", (req, res, next) => {
   try {
@@ -9,6 +10,7 @@ router.get("/", (req, res, next) => {
     next(e);
   }
 });
+router.use("/api/v3/event", eventrouter);
 router.use("/api/v1/blog", blogrouter);
 router.use("/api/v2/user", userrouter);
 module.exports = router;
