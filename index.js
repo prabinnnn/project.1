@@ -1,10 +1,12 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const indexofrouter = require("./routes");
+const PORT = Number(process.env.PORT);
 app.use("/", indexofrouter);
 mongoose
-  .connect("mongodb://localhost:27017/blog-app")
+  .connect(process.env.DB)
   .then(() => console.log("Connected!"))
   .catch((err) => console.error("Error connecting to MongoDB:", err));
 
@@ -14,6 +16,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ msg: err });
 });
 
-app.listen(8000, () => {
-  console.log("App is running on port 8000");
+app.listen(PORT, () => {
+  console.log(`App is running on port ${PORT}`);
 });
