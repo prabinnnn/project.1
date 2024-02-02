@@ -13,4 +13,5 @@ router.get("/", (req, res, next) => {
 router.use("/api/v3/event", eventrouter);
 router.use("/api/v1/blog", blogrouter);
 router.use("/api/v2/user", userrouter);
+router.use("/api/v4/book");
 module.exports = router;
